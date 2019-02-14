@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Dropzone from "./Dropzone";
+import Dropzone from "../dropzone/Dropzone";
 import "./Upload.css";
-import Progress from "./Progress";
+import Progress from "../progress/Progress";
 
 class Upload extends Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class Upload extends Component {
 
       this.setState({ successfullUploaded: true, uploading: false });
     } catch (e) {
+      // Not Production ready! Do some error handling here instead...
       this.setState({ successfullUploaded: true, uploading: false });
     }
   }
@@ -54,12 +55,14 @@ class Upload extends Component {
           this.setState({ uploadProgress: copy });
         }
       });
+
       req.upload.addEventListener("load", event => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "done", percentage: 100 };
         this.setState({ uploadProgress: copy });
         resolve(req.response);
       });
+
       req.upload.addEventListener("error", event => {
         const copy = { ...this.state.uploadProgress };
         copy[file.name] = { state: "error", percentage: 0 };
@@ -109,7 +112,7 @@ class Upload extends Component {
     } else {
       return (
         <button
-          disabled={this.state.files.length < 0}
+          disabled={this.state.files.length < 0 || this.state.uploading}
           onClick={this.uploadFiles}
         >
           Upload

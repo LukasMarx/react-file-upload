@@ -4,7 +4,7 @@ import "./Dropzone.css";
 class Dropzone extends Component {
   constructor(props) {
     super(props);
-    this.state = { hightlight: false, disabled: true };
+    this.state = { hightlight: false };
     this.fileInputRef = React.createRef();
 
     this.openFileDialog = this.openFileDialog.bind(this);
@@ -29,8 +29,8 @@ class Dropzone extends Component {
   }
 
   onDragOver(event) {
-    if (this.state.disabled) return;
     event.preventDefault();
+    if (this.props.disabed) return;
     this.setState({ hightlight: true });
   }
 
@@ -39,8 +39,8 @@ class Dropzone extends Component {
   }
 
   onDrop(event) {
-    if (this.state.disabled) return;
     event.preventDefault();
+    if (this.props.disabed) return;
     const files = event.dataTransfer.files;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);

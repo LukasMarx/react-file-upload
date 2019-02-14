@@ -23,12 +23,6 @@
   overflow-y: auto;
 }
 
-.Filename {
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #555;
-}
-
 .Actions {
   display: flex;
   flex: 1;
@@ -36,6 +30,17 @@
   align-items: flex-end;
   flex-direction: column;
   margin-top: 32px;
+}
+
+.Title {
+  margin-bottom: 32px;
+  color: #555;
+}
+
+.Filename {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555;
 }
 
 .Row {
@@ -52,11 +57,6 @@
 .CheckIcon {
   opacity: 0.5;
   margin-left: 32px;
-}
-
-.Title {
-  margin-bottom: 32px;
-  color: #555;
 }
 
 .ProgressWrapper {
@@ -89,4 +89,9 @@ button {
   background: rgba(103, 58, 183, 1);
   color: #fff;
   outline: 0;
+}
+
+button:disabled {
+  background: rgb(189, 189, 189);
+  cursor: default;
 }
